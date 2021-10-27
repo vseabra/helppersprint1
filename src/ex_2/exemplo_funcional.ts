@@ -1,4 +1,11 @@
-import {getBioByID, getNameByID, deleteByID, updateByID, Update, Person} from "./ex_2_funcional"
+import {
+  getBioByID,
+  getNameByID,
+  deleteByID,
+  updateByID,
+  Update,
+  Person,
+} from "./ex_2_funcional";
 
 let lista: Array<Object> = [
   {
@@ -25,23 +32,27 @@ let lista: Array<Object> = [
 
 // testes
 
-console.log("\n[getBioByID] \n")
-console.log(getBioByID(1, lista as Person[]))
-console.log(getBioByID(5, lista as Person[])) // undefined
+// bio
+console.log(getBioByID(1, lista as Person[])); // bio certa
+console.log(getBioByID(5, lista as Person[])); // undefined
 
-console.log("\n[getNameByID] \n")
-console.log(getNameByID(1, lista as Person[]))
-console.log(getNameByID(5, lista as Person[])) // undefined
+// nome
+console.log(getNameByID(1, lista as Person[])); // ada lovelace
+console.log(getNameByID(5, lista as Person[])); // undefined
 
-console.log("\n[deleteByID] \n")
-const new_list = deleteByID(1, lista as Person[])
-console.log(getNameByID(1, new_list as Person[])) // undefined
-console.log(lista.length === new_list.length) // false
+// deletar
+const new_list = deleteByID(1, lista as Person[]); // Array<Pèrson>
+console.log(getNameByID(1, new_list as Person[])); // undefined
+console.log(lista.length === new_list.length); // false
 
-console.log("\n[updatebyID] \n")
-const updated_list = updateByID(1, lista as Person[], {name: "lovelace ada", bio:"N/A"})
+// alterar
+const update: Update = {
+  name: "lovelace ada",
+  bio: "N/A",
+};
+const updated_list = updateByID(1, lista as Person[], update);
 
-console.log(getNameByID(1, updated_list as Person[])) //lovelace ada
-console.log(getNameByID(1, lista as Person[])) //Ada Lovelace
+console.log(getNameByID(1, updated_list as Person[])); //lovelace ada
+console.log(getNameByID(1, lista as Person[])); //Ada Lovelace
 
-console.log(getBioByID(1, updated_list as Person[])) // N/A
+console.log(getBioByID(1, updated_list as Person[])); // N/A

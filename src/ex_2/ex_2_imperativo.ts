@@ -11,7 +11,7 @@ interface Update {
 
 // recebe um id e retorna a bio correspodente.
 const getBioByID = (id: number, list: Array<Person>): string | undefined => {
-  for (let i = 0; i < list.length; i++) {
+  for (let i: number = 0; i < list.length; i++) {
     if (list[i].id === id) {
       return list[i].bio;
     }
@@ -21,7 +21,7 @@ const getBioByID = (id: number, list: Array<Person>): string | undefined => {
 
 // recebe um id e retorna o nome correspodente.
 const getNameByID = (id: number, list: Array<Person>): string | undefined => {
-  for (let i = 0; i < list.length; i++) {
+  for (let i: number = 0; i < list.length; i++) {
     if (list[i].id === id) {
       return list[i].name;
     }
@@ -31,7 +31,7 @@ const getNameByID = (id: number, list: Array<Person>): string | undefined => {
 
 // recebe um id e modifica a lista para remover o elemento
 const deleteByID = (id: number, list: Array<Person>): void => {
-  for (let i = 0; i < list.length; i++) {
+  for (let i: number = 0; i < list.length; i++) {
     if (list[i].id === id) {
       list.splice(i, 1);
     }
@@ -40,7 +40,7 @@ const deleteByID = (id: number, list: Array<Person>): void => {
 
 // recebe um id e uma mudança {name?: string, bio?: string} e modifica a lista com o elemento atualizado
 const updateByID = (id: number, list: Array<Person>, update: Update): void => {
-  for (let i = 0; i < list.length; i++) {
+  for (let i: number = 0; i < list.length; i++) {
     if (list[i].id === id) {
       list[i] = { ...list[i], ...update };
     }

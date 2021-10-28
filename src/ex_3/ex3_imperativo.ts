@@ -7,7 +7,6 @@ const GetBiggestLowestMean = (list: Array<any>): Array<number> => {
     if (!isNaN(possibleNumber)){
       numericList.push(possibleNumber);
     }
-
   }
 
   let sum: number = 0;
@@ -20,8 +19,8 @@ const GetBiggestLowestMean = (list: Array<any>): Array<number> => {
     biggestNumber = numericList[i] > biggestNumber ? numericList[i] : biggestNumber;
     lowestNumber = numericList[i] < lowestNumber ? numericList[i] : lowestNumber;
   }
-  let mean = sum / numericList.length;
 
+  let mean = sum / numericList.length;
   return [biggestNumber, lowestNumber, mean];
 
 }

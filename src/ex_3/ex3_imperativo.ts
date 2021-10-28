@@ -1,4 +1,4 @@
-const GetBiggestLowestMean = (list: Array<any>): Array<number> => {
+const getBiggestLowestMean = (list: Array<any>): Array<number> => {
   // criar uma nova lista, só com valores númericos
   const numericList: Array<number> = [];
   for (let i = 0; i < list.length; i++){

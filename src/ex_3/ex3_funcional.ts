@@ -1,4 +1,4 @@
-const GetBiggestLowestMean = (list: Array<any>): Array<Number> => {
+const GetBiggestLowestMean = (list: Array<any>): Array<number> => {
   // declarei essas funções separadamente por legibilidae (linhas muito grandes princialmente com a tipagem)
   const numericFilter = (listItem: any): boolean => !isNaN(Number(listItem)); // filtra valores núemericos
   const sumReducer = (previous: number, current: number): number => previous + current; // usado na media.
@@ -14,8 +14,3 @@ const GetBiggestLowestMean = (list: Array<any>): Array<Number> => {
 
 }
 
-let lista = ["1", "2", 3, 0, 0, "0"]
-console.log(GetBiggestLowestMean(lista)) // [3, 0, 1]
-
-let soStrings = ["1", "3", "dois", "cinco"]
-console.log(GetBiggestLowestMean(soStrings)) // [3, 1, 2]

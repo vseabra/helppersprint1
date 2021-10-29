@@ -1,0 +1,32 @@
+body {
+    margin: 40px auto;
+    max-width: 1000px;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #444;
+    padding: 0 10px;
+}
+table {
+  border-bottom: 1px solid black;
+  border-top: 1px solid black
+}
+
+button{
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+input{
+  resize: both;
+  width: 100%;
+}
+
+.btn-edit {
+  background-color: #A0937D;
+  color: #fff;
+}
+.btn-delete {
+  background-color: #F29191;
+  color: #000;
+}
+

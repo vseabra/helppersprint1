@@ -7,11 +7,8 @@ A pasta ```dist/``` contém os arquivos compilados para o browser. e uma pagina 
 os arquivos foram compilados com o comando ```tsc --module es6``` e eu editei manualmente o arquivo main.js para importar o arquivo "./utils.js" (ele estava importando "./utils")
 
 
-## exemplo de uso(imperativo): 
+## página
+a página está disponivel em:
 ```
-let lista = ["1", "2", 3, 0, 0, "0"]
-console.log(GetBiggestLowestMean(lista)) // [3, 0, 1]
-
-let soStrings = ["1", "3", "dois", "cinco"]
-console.log(GetBiggestLowestMean(soStrings)) // [3, 1, 2]
+https://helppersprint1parte4.surge.sh/
 ```

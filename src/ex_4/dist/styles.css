@@ -5,15 +5,36 @@ body {
     font-size: 18px;
     color: #444;
     padding: 0 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+h1{
+  background-color: black;
+  color: white;
+  display: inline
+
+}
+
 table {
   border-bottom: 1px solid black;
   border-top: 1px solid black
+}
+td {
+  padding-left: 2em;
+  padding-right: 1em;
+  padding-bottom: 1em;
 }
 
 button{
   font-weight: bold;
   border-radius: 5px;
+  min-width: 4.8em;
+  background-color: white;
+  color: black;
+}
+
+button:hover {
+  box-shadow: 0px 0px 4px 0px #888888;
 }
 
 input{
@@ -21,10 +42,6 @@ input{
   width: 100%;
 }
 
-.btn-edit {
-  background-color: #A0937D;
-  color: #fff;
-}
 .btn-delete {
   background-color: #F29191;
   color: #000;

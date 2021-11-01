@@ -1,6 +1,6 @@
-import {Person, Update} from "./types.js"
-import {renderTable} from "./main.js"
-import {deleteByID, updateByID} from "./utils.js"
+import { Person, Update } from "./types.js";
+import { renderTable } from "./main.js";
+import { deleteByID, updateByID } from "./utils.js";
 // criei esse arquivo porque eu queria colocar o promptForDeletion em um arquivo separado, porém ele depende de scientists (não tem como sobrescrever valores importados)
 
 export let scientists: Array<Person> = [
@@ -38,4 +38,4 @@ export const promptForDeletion = (id: number): void => {
 
 export const updateScientist = (id: number, update: Update): void => {
   scientists = updateByID(id, scientists, update);
-}
+};

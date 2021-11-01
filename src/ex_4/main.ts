@@ -1,6 +1,6 @@
-import { createForm, createRow} from "./DomUtils.js";
+import { createForm, createRow } from "./DomUtils.js";
 import { Person, Update } from "./types.js";
-import {scientists, updateScientist} from "./services.js"
+import { scientists, updateScientist } from "./services.js";
 
 export const renderTable = (list: Array<Person>): void => {
   const table: HTMLTableElement = document.querySelector(
@@ -14,7 +14,9 @@ export const renderTable = (list: Array<Person>): void => {
 };
 
 const renderForm = (id: number): void => {
-  const container: HTMLDivElement = document.querySelector("#update-form-container") as HTMLDivElement;
+  const container: HTMLDivElement = document.querySelector(
+    "#update-form-container"
+  ) as HTMLDivElement;
   container.innerHTML = ""; // destroi o formulario anterior.
 
   // TODO talvez mover para outro lugar? mas eu teria que passar o id de alguma forma...
@@ -22,15 +24,20 @@ const renderForm = (id: number): void => {
     event.preventDefault();
 
     const form: HTMLFormElement = event.target as HTMLFormElement;
-    const nameInput: HTMLInputElement = form.elements.namedItem("name-input") as HTMLInputElement;
-    const bioInput: HTMLInputElement = form.elements.namedItem("bio-input") as HTMLInputElement;
+    const nameInput: HTMLInputElement = form.elements.namedItem(
+      "name-input"
+    ) as HTMLInputElement;
+
+    const bioInput: HTMLInputElement = form.elements.namedItem(
+      "bio-input"
+    ) as HTMLInputElement;
 
     const update: Update = {};
     // validação dos updates, se um campo for vazio não é atualizado.
-    if (nameInput.value){
+    if (nameInput.value) {
       update.name = nameInput.value;
     }
-    if (bioInput.value){
+    if (bioInput.value) {
       update.bio = bioInput.value;
     }
     updateScientist(id, update);
@@ -41,6 +48,5 @@ const renderForm = (id: number): void => {
   const form = createForm(id, handleSubmit);
   container.appendChild(form);
 };
-
 
 document.addEventListener("DOMContentLoaded", () => renderTable(scientists));

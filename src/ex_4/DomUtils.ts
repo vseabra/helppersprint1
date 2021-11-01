@@ -1,6 +1,4 @@
-import { Person, Button, Form, Input, TableRow } from "./types.js";
-import { getBioByID, getNameByID } from "./utils.js";
-import { scientists, promptForDeletion } from "./services.js";
+import { Button, Form, Input, TableRow } from "./types.js";
 
 /**
  * retorna um HTMLInputElement
@@ -86,25 +84,11 @@ export const createRow = (row: TableRow): HTMLElement => {
   })
   newRow.append(...tableDataElements)
 
-  if (row.Buttons) {
-    const buttonElements: HTMLButtonElement[] = row.Buttons.map(createButton);
+  if (row.buttons) {
+    const buttonElements: HTMLButtonElement[] = row.buttons.map(createButton);
     newRow.append(...buttonElements);
   }
 
-  // const updateButton: Button = {
-  //   label: "Atualizar",
-  //   className: "btn-edit",
-  //   onClick: () => showForm(person.id),
-  // };
-  // const deleteButton: Button = {
-  //   label: "Deletar",
-  //   className: "btn-delete",
-  //   onClick: () => promptForDeletion(person.id),
-  // };
-
-  // const ctaUpdate: HTMLButtonElement = createButton(updateButton);
-  // const ctaDelete: HTMLButtonElement = createButton(deleteButton);
-
-
   return newRow;
 };
+

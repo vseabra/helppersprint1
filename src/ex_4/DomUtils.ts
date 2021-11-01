@@ -1,86 +1,111 @@
-import { Person} from "./types.js";
+import { Person, Button, Form, Input } from "./types.js";
 import { getBioByID, getNameByID } from "./utils.js";
-import { scientists, promptForDeletion } from "./services.js"
-
-//TODO criar uma interface para definir os botões e inputs 
-//TODO procurar como tipar um callback? () => void parece errado.
+import { scientists, promptForDeletion } from "./services.js";
 
 /**
  * retorna um HTMLInputElement
- * 
- * @param placeholder: string - placeholder do input
- * @param name: string - nome do input, usado para encotnar o elemento no submit do form
+ *
+ * @param input - objeto input, com placeholder e name
  * @returns: HTMLInputElement
  *
  */
-export const createInput = (placeholder :string, name: string): HTMLInputElement => {
-  const input: HTMLInputElement = document.createElement("input");
+export const createInput = (input: Input): HTMLInputElement => {
+  const newInput: HTMLInputElement = document.createElement("input");
 
-  input.placeholder = placeholder;
-  input.name = name;
-  return input
-}
+  newInput.placeholder = input.placeholder;
+  newInput.name = input.name;
+  return newInput;
+};
 
 /**
  * retorna um HTMLButtonElement com o texto, classe e handler para o onCLick especificados
- * 
- * @param label: string - texto que fica dentro do botão
- * @param className: string - classe do botão
- * @param onClick: callback - handler para o evento onClick
+ *
+ * @param button: Button - objeto Button com texto, classe? e handler? e type?
  * @returns: HTMLButtonElement
  *
  */
-export const createButton = (label: string, className: string, onClick: (event: Event) => void): HTMLButtonElement => {
-  const button: HTMLButtonElement = document.createElement("button");
+export const createButton = (button: Button): HTMLButtonElement => {
+  const newButton: HTMLButtonElement = document.createElement("button");
 
-  button.innerText = label;
-  button.className = className;
-  button.addEventListener("click", onClick)
-  return button
-}
+  newButton.innerText = button.label;
+
+  if (button.className) {
+    newButton.className = button.className;
+  }
+  if (button.onClick) {
+    newButton.addEventListener("click", button.onClick);
+  }
+  if (button.type) {
+    newButton.type = button.type;
+  }
+  return newButton;
+};
 
 /**
  * retorna um HTMLFormElement com os campos para atualizar uma pessoa
- * 
- * @param id: number - id da pessoa a ser atualizada
- * @param onSubmit: callback - handler para o evento onSubmit
+ *
+ * @param form: Form - contém um id e o callback para o evento onSubmit
  * @returns: HTMLFormElement
  *
  */
-export const createForm = (id: number, onSubmit: (event: Event) => void): HTMLFormElement => {
-  const form: HTMLFormElement = document.createElement("form");
-  const nameInput: HTMLInputElement = createInput(getNameByID(id, scientists) as string, "name-input");
-  const bioInput: HTMLInputElement = createInput(getBioByID(id, scientists) as string, "bio-input");
-  // TODO usar a função createButton para criar os botões quando eu implementar a interface
-  const submitButton: HTMLButtonElement = document.createElement("button");
-  submitButton.innerText = "Atualizar";
-  submitButton.type = "submit";
+export const createForm = (form: Form): HTMLFormElement => {
+  const newForm: HTMLFormElement = document.createElement("form");
+  const nameInput: Input = {
+    placeholder: getNameByID(form.id, scientists) as string,
+    name: "name-input",
+  };
+  const bioInput: Input = {
+    placeholder: getBioByID(form.id, scientists) as string,
+    name: "bio-input",
+  };
+  const submitButton: Button = {
+    label: "Atualizar",
+    type: "submit",
+  }
 
-  form.appendChild(nameInput);
-  form.appendChild(bioInput);
-  form.appendChild(submitButton)
-  form.addEventListener("submit", onSubmit);
-  return form
-}
+  const nameInputElement: HTMLInputElement = createInput(nameInput);
+  const bioInputElement: HTMLInputElement = createInput(bioInput);
+  const submitButtonElement: HTMLButtonElement = createButton(submitButton);
+
+  newForm.appendChild(nameInputElement);
+  newForm.appendChild(bioInputElement);
+  newForm.appendChild(submitButtonElement);
+  newForm.addEventListener("submit", form.onSubmit);
+  return newForm;
+};
 
 /**
  * retorna uma linha da tabela com os dados da pessoa e o botão de update
- * 
+ *
  * @param person: Person - dados da Pessoa {number, string, string}
  * @param showForm: callback - função que cria e mostra um formulario
- * 
+ *
  * @remarks: não é muito elegante usar os callbacks aqui, mas é o que eu consegui fazer =(
  * @returns: HTMLElement <tr> com os dados da pessoa e o botão de update
  *
  */
-export const createRow = (person: Person, showForm: (id: number) => void): HTMLElement => {
+export const createRow = (
+  person: Person,
+  showForm: (id: number) => void
+): HTMLElement => {
   const row: HTMLElement = document.createElement("tr");
   const idCell: HTMLElement = document.createElement("td");
   const nameCell: HTMLElement = document.createElement("td");
   const bioCell: HTMLElement = document.createElement("td");
 
-  const ctaUpdate: HTMLButtonElement = createButton("Editar", "btn-edit", () => showForm(person.id))
-  const ctaDelete: HTMLButtonElement = createButton("Deletar", "btn-delete", () => promptForDeletion(person.id))
+  const updateButton: Button = {
+    label: "Atualizar",
+    className: "btn-edit",
+    onClick: () => showForm(person.id),
+  };
+  const deleteButton: Button = {
+    label: "Deletar",
+    className: "btn-delete",
+    onClick: () => promptForDeletion(person.id),
+  };
+
+  const ctaUpdate: HTMLButtonElement = createButton(updateButton);
+  const ctaDelete: HTMLButtonElement = createButton(deleteButton);
 
   idCell.innerText = person.id.toString();
   nameCell.innerText = person.name;
@@ -94,4 +119,3 @@ export const createRow = (person: Person, showForm: (id: number) => void): HTMLE
 
   return row;
 };
-

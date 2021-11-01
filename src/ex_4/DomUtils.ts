@@ -38,31 +38,29 @@ export const createButton = (button: Button): HTMLButtonElement => {
 /**
  * retorna um HTMLFormElement com os campos para atualizar uma pessoa
  *
- * @param form: Form - contém um id e o callback para o evento onSubmit
+ * @param form: Form - contém um id, o callback para o evento onSubmit e um array de Inputs
  * @returns: HTMLFormElement
  *
  */
 export const createForm = (form: Form): HTMLFormElement => {
   const newForm: HTMLFormElement = document.createElement("form");
-  const nameInput: Input = {
-    placeholder: getNameByID(form.id, scientists) as string,
-    name: "name-input",
-  };
-  const bioInput: Input = {
-    placeholder: getBioByID(form.id, scientists) as string,
-    name: "bio-input",
-  };
+  // const nameInput: Input = {
+  //   placeholder: getNameByID(form.id, scientists) as string,
+  //   name: "name-input",
+  // };
+  // const bioInput: Input = {
+  //   placeholder: getBioByID(form.id, scientists) as string,
+  //   name: "bio-input",
+  // };
   const submitButton: Button = {
     label: "Atualizar",
     type: "submit",
   }
 
-  const nameInputElement: HTMLInputElement = createInput(nameInput);
-  const bioInputElement: HTMLInputElement = createInput(bioInput);
+  const inputs: HTMLInputElement[] = form.inputs.map(createInput)
   const submitButtonElement: HTMLButtonElement = createButton(submitButton);
 
-  newForm.appendChild(nameInputElement);
-  newForm.appendChild(bioInputElement);
+  inputs.forEach((input) => newForm.appendChild(input));
   newForm.appendChild(submitButtonElement);
   newForm.addEventListener("submit", form.onSubmit);
   return newForm;

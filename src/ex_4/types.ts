@@ -19,6 +19,7 @@ export interface Button {
 export interface Form {
   id: number;
   onSubmit: (event: Event) => void;
+  inputs: Input[];
 }
 
 export interface Input {

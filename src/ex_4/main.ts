@@ -1,6 +1,7 @@
 import { createForm, createRow } from "./DomUtils.js";
-import { Person, Update, Form } from "./types.js";
-import { scientists, updateScientist } from "./services.js";
+import { Person, Update, Form, TableRow, Button, Input} from "./types.js";
+import { scientists, updateScientist, promptForDeletion } from "./services.js";
+import { getBioByID, getNameByID } from "./utils.js";
 
 export const renderTable = (list: Array<Person>): void => {
   const table: HTMLTableElement = document.querySelector(
@@ -8,7 +9,26 @@ export const renderTable = (list: Array<Person>): void => {
   ) as HTMLTableElement;
   // remove todas as linhas antigas da tabela.
   table.innerHTML = "";
-  const tableRows: HTMLElement[] = list.map((scientist) => createRow(scientist, renderForm));
+
+  const tableRows: HTMLElement[] = list.map(( scientist ) => {
+
+    const updateButton: Button = {
+      label: "Atualizar",
+      className: "btn-edit",
+      onClick: () => renderForm(scientist.id),
+    };
+    const deleteButton: Button = {
+      label: "Deletar",
+      className: "btn-delete",
+      onClick: () => promptForDeletion(scientist.id),
+    };
+    const row: TableRow = {
+      tableData: {...scientist},
+      buttons: [updateButton, deleteButton]
+    };
+    return (createRow(row));
+
+  })
 
   tableRows.forEach((row: HTMLElement) => table.appendChild(row));
 };
@@ -45,9 +65,19 @@ const renderForm = (id: number): void => {
     renderTable(scientists);
   };
 
-  const form: Form = {id, onSubmit: handleSubmit}
+  const nameInput: Input = {
+    placeholder: getNameByID(id, scientists) as string,
+    name: "name-input",
+  };
+  const bioInput: Input = {
+    placeholder: getBioByID(id, scientists) as string,
+    name: "bio-input",
+  };
+
+  const form: Form = {id, onSubmit: handleSubmit, inputs: [nameInput,bioInput] }
   const formElement: HTMLFormElement = createForm(form);
   container.appendChild(formElement);
 };
+
 
 document.addEventListener("DOMContentLoaded", () => renderTable(scientists));

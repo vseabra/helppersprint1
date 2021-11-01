@@ -42,14 +42,6 @@ export const createButton = (button: Button): HTMLButtonElement => {
  */
 export const createForm = (form: Form): HTMLFormElement => {
   const newForm: HTMLFormElement = document.createElement("form");
-  // const nameInput: Input = {
-  //   placeholder: getNameByID(form.id, scientists) as string,
-  //   name: "name-input",
-  // };
-  // const bioInput: Input = {
-  //   placeholder: getBioByID(form.id, scientists) as string,
-  //   name: "bio-input",
-  // };
   const submitButton: Button = {
     label: "Atualizar",
     type: "submit",

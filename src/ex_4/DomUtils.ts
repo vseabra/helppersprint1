@@ -67,10 +67,9 @@ export const createForm = (form: Form): HTMLFormElement => {
 /**
  * retorna uma linha da tabela com os dados da pessoa e o botão de update
  *
- * @param person: Person - dados da Pessoa {number, string, string}
- * @param showForm: callback - função que cria e mostra um formulario
+ * @param row: TableRow, contém a data presente em um tablerow e opcionalmente uma lista de botões
  *
- * @returns: HTMLElement <tr> com os dados da pessoa e o botão de update
+ * @returns: HTMLElement <tr> com os dados passados
  *
  */
 export const createRow = (row: TableRow): HTMLElement => {

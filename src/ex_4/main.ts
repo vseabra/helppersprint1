@@ -33,37 +33,12 @@ export const renderTable = (list: Array<Person>): void => {
   tableRows.forEach((row: HTMLElement) => table.appendChild(row));
 };
 
+
 const renderForm = (id: number): void => {
   const container: HTMLDivElement = document.querySelector(
     "#update-form-container"
   ) as HTMLDivElement;
   container.innerHTML = ""; // destroi o formulario anterior.
-
-  // TODO talvez mover para outro lugar? mas eu teria que passar o id de alguma forma...
-  const handleSubmit = (event: Event): void => {
-    event.preventDefault();
-
-    const form: HTMLFormElement = event.target as HTMLFormElement;
-    const nameInput: HTMLInputElement = form.elements.namedItem(
-      "name-input"
-    ) as HTMLInputElement;
-
-    const bioInput: HTMLInputElement = form.elements.namedItem(
-      "bio-input"
-    ) as HTMLInputElement;
-
-    const update: Update = {};
-    // validação dos updates, se um campo for vazio não é atualizado.
-    if (nameInput.value) {
-      update.name = nameInput.value;
-    }
-    if (bioInput.value) {
-      update.bio = bioInput.value;
-    }
-    updateScientist(id, update);
-    container.innerHTML = "";
-    renderTable(scientists);
-  };
 
   const nameInput: Input = {
     placeholder: getNameByID(id, scientists) as string,
@@ -74,9 +49,34 @@ const renderForm = (id: number): void => {
     name: "bio-input",
   };
 
-  const form: Form = {id, onSubmit: handleSubmit, inputs: [nameInput,bioInput] }
+  const form: Form = {id, onSubmit: (event: Event) => handleSubmit(event, id, container), inputs: [nameInput,bioInput] }
   const formElement: HTMLFormElement = createForm(form);
   container.appendChild(formElement);
+};
+
+const handleSubmit = (event: Event, id: number, container: HTMLDivElement): void => {
+  event.preventDefault();
+
+  const form: HTMLFormElement = event.target as HTMLFormElement;
+  const nameInput: HTMLInputElement = form.elements.namedItem(
+    "name-input"
+  ) as HTMLInputElement;
+
+  const bioInput: HTMLInputElement = form.elements.namedItem(
+    "bio-input"
+  ) as HTMLInputElement;
+
+  const update: Update = {};
+  // validação dos updates, se um campo for vazio não é atualizado.
+  if (nameInput.value) {
+    update.name = nameInput.value;
+  }
+  if (bioInput.value) {
+    update.bio = bioInput.value;
+  }
+  updateScientist(id, update);
+  container.innerHTML = "";
+  renderTable(scientists);
 };
 
 

@@ -66,14 +66,14 @@ export const createForm = (form: Form): HTMLFormElement => {
  */
 export const createRow = (row: TableRow): HTMLElement => {
   const newRow: HTMLElement = document.createElement("tr");
-  const tableValues: string[] = Object.values(row.tableData).map(value => String(value));
+  const tableValues: string[] = Object.values(row.rowData).map(value => String(value));
 
-  const tableDataElements: HTMLTableCellElement[] = tableValues.map(tableValue => {
-    const newTableData: HTMLTableCellElement = document.createElement("td");
-    newTableData.innerText = tableValue;
-    return newTableData;
+  const rowDataElements: HTMLTableCellElement[] = tableValues.map(tableValue => {
+    const newRowData: HTMLTableCellElement = document.createElement("td");
+    newRowData.innerText = tableValue;
+    return newRowData;
   })
-  newRow.append(...tableDataElements)
+  newRow.append(...rowDataElements)
 
   if (row.buttons) {
     const buttonElements: HTMLButtonElement[] = row.buttons.map(createButton);

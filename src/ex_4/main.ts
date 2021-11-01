@@ -11,7 +11,6 @@ export const renderTable = (list: Array<Person>): void => {
   table.innerHTML = "";
 
   const tableRows: HTMLElement[] = list.map(( scientist ) => {
-
     const updateButton: Button = {
       label: "Atualizar",
       className: "btn-edit",
@@ -23,16 +22,13 @@ export const renderTable = (list: Array<Person>): void => {
       onClick: () => promptForDeletion(scientist.id),
     };
     const row: TableRow = {
-      tableData: {...scientist},
+      rowData: {...scientist},
       buttons: [updateButton, deleteButton]
     };
     return (createRow(row));
-
   })
-
   tableRows.forEach((row: HTMLElement) => table.appendChild(row));
 };
-
 
 const renderForm = (id: number): void => {
   const container: HTMLDivElement = document.querySelector(
@@ -78,6 +74,5 @@ const handleSubmit = (event: Event, id: number, container: HTMLDivElement): void
   container.innerHTML = "";
   renderTable(scientists);
 };
-
 
 document.addEventListener("DOMContentLoaded", () => renderTable(scientists));

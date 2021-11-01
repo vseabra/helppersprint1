@@ -1,5 +1,5 @@
 import { createForm, createRow } from "./DomUtils.js";
-import { Person, Update } from "./types.js";
+import { Person, Update, Form } from "./types.js";
 import { scientists, updateScientist } from "./services.js";
 
 export const renderTable = (list: Array<Person>): void => {
@@ -8,7 +8,7 @@ export const renderTable = (list: Array<Person>): void => {
   ) as HTMLTableElement;
   // remove todas as linhas antigas da tabela.
   table.innerHTML = "";
-  const tableRows = list.map((scientist) => createRow(scientist, renderForm));
+  const tableRows: HTMLElement[] = list.map((scientist) => createRow(scientist, renderForm));
 
   tableRows.forEach((row: HTMLElement) => table.appendChild(row));
 };
@@ -20,7 +20,7 @@ const renderForm = (id: number): void => {
   container.innerHTML = ""; // destroi o formulario anterior.
 
   // TODO talvez mover para outro lugar? mas eu teria que passar o id de alguma forma...
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = (event: Event): void => {
     event.preventDefault();
 
     const form: HTMLFormElement = event.target as HTMLFormElement;
@@ -45,8 +45,9 @@ const renderForm = (id: number): void => {
     renderTable(scientists);
   };
 
-  const form = createForm(id, handleSubmit);
-  container.appendChild(form);
+  const form: Form = {id, onSubmit: handleSubmit}
+  const formElement: HTMLFormElement = createForm(form);
+  container.appendChild(formElement);
 };
 
 document.addEventListener("DOMContentLoaded", () => renderTable(scientists));

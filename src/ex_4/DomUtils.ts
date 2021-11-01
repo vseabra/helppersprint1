@@ -29,15 +29,9 @@ export const createButton = (button: Button): HTMLButtonElement => {
 
   newButton.innerText = button.label;
 
-  if (button.className) {
-    newButton.className = button.className;
-  }
-  if (button.onClick) {
-    newButton.addEventListener("click", button.onClick);
-  }
-  if (button.type) {
-    newButton.type = button.type;
-  }
+  if (button.className) { newButton.className = button.className; }
+  if (button.onClick) { newButton.addEventListener("click", button.onClick);}
+  if (button.type) { newButton.type = button.type;}
   return newButton;
 };
 

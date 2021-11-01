@@ -1,4 +1,4 @@
-import {Person, Update} from "./types"
+import {Person, Update} from "./types.js"
 
 // recebe um id e retorna a bio correspodente.
 export const getBioByID = (id: number, list: Array<Person>): string | undefined => {

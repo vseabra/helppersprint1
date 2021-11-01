@@ -1,6 +1,6 @@
-import { Person, Update } from "./types";
-import { getBioByID, getNameByID, deleteByID } from "./utils";
-import { scientists, promptForDeletion } from "./main"
+import { Person} from "./types.js";
+import { getBioByID, getNameByID } from "./utils.js";
+import { scientists, promptForDeletion } from "./services.js"
 
 //TODO criar uma interface para definir os botões e inputs 
 //TODO procurar como tipar um callback? () => void parece errado.
@@ -67,16 +67,19 @@ export const createForm = (id: number, onSubmit: (event: Event) => void): HTMLFo
  * retorna uma linha da tabela com os dados da pessoa e o botão de update
  * 
  * @param person: Person - dados da Pessoa {number, string, string}
+ * @param showForm: callback - função que cria e mostra um formulario
+ * 
+ * @remarks: não é muito elegante usar os callbacks aqui, mas é o que eu consegui fazer =(
  * @returns: HTMLElement <tr> com os dados da pessoa e o botão de update
  *
  */
-export const createRow = (person: Person): HTMLElement => {
+export const createRow = (person: Person, showForm: (id: number) => void): HTMLElement => {
   const row: HTMLElement = document.createElement("tr");
   const idCell: HTMLElement = document.createElement("td");
   const nameCell: HTMLElement = document.createElement("td");
   const bioCell: HTMLElement = document.createElement("td");
 
-  const ctaUpdate: HTMLButtonElement = createButton("Editar", "btn-edit", () => renderForm(person.id))
+  const ctaUpdate: HTMLButtonElement = createButton("Editar", "btn-edit", () => showForm(person.id))
   const ctaDelete: HTMLButtonElement = createButton("Deletar", "btn-delete", () => promptForDeletion(person.id))
 
   idCell.innerText = person.id.toString();

@@ -1,5 +1,7 @@
-import {Person} from "./types"
-import {deleteByID, updateByID} from "./utils"
+import {Person, Update} from "./types.js"
+import {renderTable} from "./main.js"
+import {deleteByID, updateByID} from "./utils.js"
+// criei esse arquivo porque eu queria colocar o promptForDeletion em um arquivo separado, porém ele depende de scientists (não tem como sobrescrever valores importados)
 
 export let scientists: Array<Person> = [
   {
@@ -24,9 +26,16 @@ export let scientists: Array<Person> = [
   },
 ];
 
+// essas funções abaixo encapsulam o código de manipulação de dados, de forma que as outras funções não tenham que modificar a variavel scientists
+
 export const promptForDeletion = (id: number): void => {
-  const confirmation = confirm("tem certeza?");
+  const confirmation: boolean = confirm("tem certeza?");
   if (confirmation) {
     scientists = deleteByID(id, scientists);
+    renderTable(scientists);
   }
 };
+
+export const updateScientist = (id: number, update: Update): void => {
+  scientists = updateByID(id, scientists, update);
+}

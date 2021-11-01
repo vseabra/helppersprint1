@@ -1,5 +1,4 @@
 import {Person, Update} from "./types.js"
-
 /**
  * retorna a bio de uma pessoa ou undefined, se não existir
  *
@@ -68,8 +67,9 @@ export const updateByID = (
 
   const updatedPerson: Person = { ...personToUpdate, ...update };
   const updatedList: Array<Person> = list.map((person: Person) =>
-    person !== personToUpdate ? person : updatedPerson
+    person.id !== personToUpdate.id ? person : updatedPerson
   );
 
   return updatedList;
 };
+

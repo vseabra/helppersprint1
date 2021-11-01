@@ -1,4 +1,4 @@
-import { Person, Button, Form, Input } from "./types.js";
+import { Person, Button, Form, Input, TableRow } from "./types.js";
 import { getBioByID, getNameByID } from "./utils.js";
 import { scientists, promptForDeletion } from "./services.js";
 
@@ -72,42 +72,39 @@ export const createForm = (form: Form): HTMLFormElement => {
  * @param person: Person - dados da Pessoa {number, string, string}
  * @param showForm: callback - função que cria e mostra um formulario
  *
- * @remarks: não é muito elegante usar os callbacks aqui, mas é o que eu consegui fazer =(
  * @returns: HTMLElement <tr> com os dados da pessoa e o botão de update
  *
  */
-export const createRow = (
-  person: Person,
-  showForm: (id: number) => void
-): HTMLElement => {
-  const row: HTMLElement = document.createElement("tr");
-  const idCell: HTMLElement = document.createElement("td");
-  const nameCell: HTMLElement = document.createElement("td");
-  const bioCell: HTMLElement = document.createElement("td");
+export const createRow = (row: TableRow): HTMLElement => {
+  const newRow: HTMLElement = document.createElement("tr");
+  const tableValues: string[] = Object.values(row.tableData).map(value => String(value));
 
-  const updateButton: Button = {
-    label: "Atualizar",
-    className: "btn-edit",
-    onClick: () => showForm(person.id),
-  };
-  const deleteButton: Button = {
-    label: "Deletar",
-    className: "btn-delete",
-    onClick: () => promptForDeletion(person.id),
-  };
+  const tableDataElements: HTMLTableCellElement[] = tableValues.map(tableValue => {
+    const newTableData: HTMLTableCellElement = document.createElement("td");
+    newTableData.innerText = tableValue;
+    return newTableData;
+  })
+  newRow.append(...tableDataElements)
 
-  const ctaUpdate: HTMLButtonElement = createButton(updateButton);
-  const ctaDelete: HTMLButtonElement = createButton(deleteButton);
+  if (row.Buttons) {
+    const buttonElements: HTMLButtonElement[] = row.Buttons.map(createButton);
+    newRow.append(...buttonElements);
+  }
 
-  idCell.innerText = person.id.toString();
-  nameCell.innerText = person.name;
-  bioCell.innerText = person.bio;
+  // const updateButton: Button = {
+  //   label: "Atualizar",
+  //   className: "btn-edit",
+  //   onClick: () => showForm(person.id),
+  // };
+  // const deleteButton: Button = {
+  //   label: "Deletar",
+  //   className: "btn-delete",
+  //   onClick: () => promptForDeletion(person.id),
+  // };
 
-  row.appendChild(idCell);
-  row.appendChild(nameCell);
-  row.appendChild(bioCell);
-  row.appendChild(ctaUpdate);
-  row.appendChild(ctaDelete);
+  // const ctaUpdate: HTMLButtonElement = createButton(updateButton);
+  // const ctaDelete: HTMLButtonElement = createButton(deleteButton);
 
-  return row;
+
+  return newRow;
 };

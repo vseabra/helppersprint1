@@ -26,3 +26,9 @@ export interface Input {
   name: string;
   placeholder: string;
 }
+
+// não consegui pensar em um nome melhor para  tableData
+export interface TableRow {
+  tableData: {[property: string]: string | number}
+  Buttons?: Button[];
+}

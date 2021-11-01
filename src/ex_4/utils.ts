@@ -1,14 +1,4 @@
-export interface Person {
-  id: number;
-  name: string;
-  bio: string;
-}
-
-export interface Update {
-  name?: string;
-  bio?: string;
-}
-
+import {Person, Update} from "./types"
 
 // recebe um id e retorna a bio correspodente.
 export const getBioByID = (id: number, list: Array<Person>): string | undefined => {

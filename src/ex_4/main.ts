@@ -1,4 +1,6 @@
-import {Person, Update, getBioByID, getNameByID, deleteByID, updateByID} from "./utils";
+import {getBioByID, getNameByID, deleteByID, updateByID} from "./utils";
+import {Person, Update} from "./types"
+
 let lista: Array<Person> = [
   {
     id: 1,

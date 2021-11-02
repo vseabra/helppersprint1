@@ -17,7 +17,7 @@ interface Update {
  * @returns: string | undefined
  *
  */
-const getBioByID = (id: number, list: Array<Person>): string | undefined => {
+const getBioByIDImperative = (id: number, list: Array<Person>): string | undefined => {
   for (let i: number = 0; i < list.length; i++) {
     if (list[i].id === id) {
       return list[i].bio;
@@ -34,7 +34,7 @@ const getBioByID = (id: number, list: Array<Person>): string | undefined => {
  * @returns: string | undefined
  *
  */
-const getNameByID = (id: number, list: Array<Person>): string | undefined => {
+const getNameByIDImperative = (id: number, list: Array<Person>): string | undefined => {
   for (let i: number = 0; i < list.length; i++) {
     if (list[i].id === id) {
       return list[i].name;
@@ -51,7 +51,7 @@ const getNameByID = (id: number, list: Array<Person>): string | undefined => {
  * @returns: void
  *
  */
-const deleteByID = (id: number, list: Array<Person>): void => {
+const deleteByIDImperative = (id: number, list: Array<Person>): void => {
   for (let i: number = 0; i < list.length; i++) {
     if (list[i].id === id) {
       list.splice(i, 1);
@@ -68,7 +68,7 @@ const deleteByID = (id: number, list: Array<Person>): void => {
  * @returns: void
  *
  */
-const updateByID = (id: number, list: Array<Person>, update: Update): void => {
+const updateByIDImperative = (id: number, list: Array<Person>, update: Update): void => {
   for (let i: number = 0; i < list.length; i++) {
     if (list[i].id === id) {
       list[i] = { ...list[i], ...update };
@@ -76,4 +76,4 @@ const updateByID = (id: number, list: Array<Person>, update: Update): void => {
   }
 };
 
-export { getBioByID, getNameByID, deleteByID, updateByID, Update, Person };
+export { getBioByIDImperative, getNameByIDImperative, deleteByIDImperative, updateByIDImperative, Update, Person };

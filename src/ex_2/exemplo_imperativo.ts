@@ -1,8 +1,8 @@
 import {
-  getBioByID,
-  getNameByID,
-  deleteByID,
-  updateByID,
+  getBioByIDImperative,
+  getNameByIDImperative,
+  deleteByIDImperative,
+  updateByIDImperative,
   Update,
   Person,
 } from "./ex_2_imperativo";
@@ -33,18 +33,18 @@ let lista: Array<Object> = [
 // testes
 
 // bio
-console.log(getBioByID(1, lista as Person[])); // bio certa
-console.log(getBioByID(5, lista as Person[])); // undefined
+console.log(getBioByIDImperative(1, lista as Person[])); // bio certa
+console.log(getBioByIDImperative(5, lista as Person[])); // undefined
 
 // nome
-console.log(getNameByID(1, lista as Person[])); // ada lovelace
-console.log(getNameByID(5, lista as Person[])); // undefined
+console.log(getNameByIDImperative(1, lista as Person[])); // ada lovelace
+console.log(getNameByIDImperative(5, lista as Person[])); // undefined
 
 // deletar
 const lengthBefore: number = lista.length
-deleteByID(1, lista as Person[]);
+deleteByIDImperative(1, lista as Person[]);
 console.log(lista.length === lengthBefore) // false
-console.log(getNameByID(1, lista as Person[])); // undefined
+console.log(getNameByIDImperative(1, lista as Person[])); // undefined
 
 // alterar
 const update: Update = {
@@ -52,9 +52,9 @@ const update: Update = {
   bio: "alterado",
 };
 
-updateByID(2, lista as Person[], update);
-console.log(getNameByID(2, lista as Person[])); // lovelace ada
-console.log(getBioByID(2, lista as Person[])); // "alterado"
+updateByIDImperative(2, lista as Person[], update);
+console.log(getNameByIDImperative(2, lista as Person[])); // lovelace ada
+console.log(getBioByIDImperative(2, lista as Person[])); // "alterado"
 
 console.log("a lista original foi alterada.")
 console.log(lista) 

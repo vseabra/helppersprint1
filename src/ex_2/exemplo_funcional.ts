@@ -31,9 +31,10 @@ let lista: Array<Object> = [
 ];
 
 // testes
+// os comentários na frente do console.log são o que deve ser printado
 
 // bio
-console.log(getBioByID(1, lista as Person[])); // bio certa
+console.log(getBioByID(1, lista as Person[])); // ${bio certa}
 console.log(getBioByID(5, lista as Person[])); // undefined
 
 // nome
@@ -41,7 +42,7 @@ console.log(getNameByID(1, lista as Person[])); // ada lovelace
 console.log(getNameByID(5, lista as Person[])); // undefined
 
 // deletar
-const new_list = deleteByID(1, lista as Person[]); // Array<Pèrson>
+const new_list: Person[] = deleteByID(1, lista as Person[]); 
 console.log(getNameByID(1, new_list as Person[])); // undefined
 console.log(lista.length === new_list.length); // false
 

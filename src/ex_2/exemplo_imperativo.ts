@@ -41,7 +41,7 @@ console.log(getNameByID(1, lista as Person[])); // ada lovelace
 console.log(getNameByID(5, lista as Person[])); // undefined
 
 // deletar
-const lengthBefore = lista.length
+const lengthBefore: number = lista.length
 deleteByID(1, lista as Person[]);
 console.log(lista.length === lengthBefore) // false
 console.log(getNameByID(1, lista as Person[])); // undefined
@@ -56,4 +56,5 @@ updateByID(2, lista as Person[], update);
 console.log(getNameByID(2, lista as Person[])); // lovelace ada
 console.log(getBioByID(2, lista as Person[])); // "alterado"
 
-console.log(lista) // a lista original foi alteralda
+console.log("a lista original foi alterada.")
+console.log(lista) 

@@ -10,7 +10,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateByID = exports.deleteByID = exports.getNameByID = exports.getBioByID = void 0;
 /**
  * retorna a bio de uma pessoa ou undefined, se não existir

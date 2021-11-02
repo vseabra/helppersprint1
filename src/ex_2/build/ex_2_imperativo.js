@@ -10,8 +10,8 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-exports.__esModule = true;
-exports.updateByID = exports.deleteByID = exports.getNameByID = exports.getBioByID = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.updateByIDImperative = exports.deleteByIDImperative = exports.getNameByIDImperative = exports.getBioByIDImperative = void 0;
 /**
  * retorna a bio de uma pessoa ou undefined, se não existir
  *
@@ -20,7 +20,7 @@ exports.updateByID = exports.deleteByID = exports.getNameByID = exports.getBioBy
  * @returns: string | undefined
  *
  */
-var getBioByID = function (id, list) {
+var getBioByIDImperative = function (id, list) {
     for (var i = 0; i < list.length; i++) {
         if (list[i].id === id) {
             return list[i].bio;
@@ -28,7 +28,7 @@ var getBioByID = function (id, list) {
     }
     return undefined;
 };
-exports.getBioByID = getBioByID;
+exports.getBioByIDImperative = getBioByIDImperative;
 /**
  * retorna o nome de uma pessoa ou undefined, se não existir
  *
@@ -37,7 +37,7 @@ exports.getBioByID = getBioByID;
  * @returns: string | undefined
  *
  */
-var getNameByID = function (id, list) {
+var getNameByIDImperative = function (id, list) {
     for (var i = 0; i < list.length; i++) {
         if (list[i].id === id) {
             return list[i].name;
@@ -45,7 +45,7 @@ var getNameByID = function (id, list) {
     }
     return undefined;
 };
-exports.getNameByID = getNameByID;
+exports.getNameByIDImperative = getNameByIDImperative;
 /**
  * modifica a lista de pessoas para não incluir o elemento com o id passado
  *
@@ -54,14 +54,14 @@ exports.getNameByID = getNameByID;
  * @returns: void
  *
  */
-var deleteByID = function (id, list) {
+var deleteByIDImperative = function (id, list) {
     for (var i = 0; i < list.length; i++) {
         if (list[i].id === id) {
             list.splice(i, 1);
         }
     }
 };
-exports.deleteByID = deleteByID;
+exports.deleteByIDImperative = deleteByIDImperative;
 /**
  * modifica a lista de pessoas, subscrevendo o elemento com o id passado com o update
  *
@@ -71,11 +71,11 @@ exports.deleteByID = deleteByID;
  * @returns: void
  *
  */
-var updateByID = function (id, list, update) {
+var updateByIDImperative = function (id, list, update) {
     for (var i = 0; i < list.length; i++) {
         if (list[i].id === id) {
             list[i] = __assign(__assign({}, list[i]), update);
         }
     }
 };
-exports.updateByID = updateByID;
+exports.updateByIDImperative = updateByIDImperative;
